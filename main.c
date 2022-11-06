@@ -139,7 +139,7 @@ int main() {
         
         //save image
         stbi_write_jpg(save_path, width, height, channel, image, width * channel);
-        stbi_write_jpg(object_path, width2, height2, channel2, object, width2* channel2);
+        // stbi_write_jpg(object_path, width2, height2, channel2, object, width2* channel2);
         printf("New image successfully saved to %s\n", save_path);
         
         clock_t toc = clock();
