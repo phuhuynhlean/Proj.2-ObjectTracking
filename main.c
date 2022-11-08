@@ -35,17 +35,23 @@ int objectDetector(unsigned char *image, int width, int height, unsigned char *o
     max = 0.1;
     sqrt2 = object_sqrt(object, object_width, object_height);
     for (int i = 0; i < width - object_width; i++) {
-        //sqrt1 dau tien
+        for (int a = 0; a < object_width ; a++){
+            for (int b = 0; b < object_height; b++){
+                img_element = image[(b) * width + (a+i)];
+                obj_element = object[b * object_width + a];
+                sqrt1 += img_element * img_element;
+            }
+        }
         for (int j = 0; j < height - object_height; j++) {
             sum = 0;
-            sqrt1 = 0;
-            
+            if (j!=0) {
+                
+            } 
             for (int a = 0; a < object_width ; a++){
                 for (int b = 0; b < object_height; b++){
                     img_element = image[(b+j) * width + (a+i)];
                     obj_element = object[b * object_width + a];
-                    sum += img_element * obj_element;   
-                    sqrt1 += img_element * img_element;
+                    sum += img_element * obj_element;
                 }
             }
             similarity = sum / (sqrt(sqrt1) * sqrt2);
@@ -91,10 +97,6 @@ void drawRectandUpdateTemplate(unsigned char *image, int width, int height, int 
             image[index] = 0;
         }
     }
-}
-
-void updateTemplate(unsigned char* template, unsigned char* img, int index){
-
 }
 
 int main() {
